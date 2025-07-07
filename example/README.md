@@ -13,7 +13,7 @@ the devcontainer that you run is made up of three main layers:
    ```json
    {
        "name": "<your devcontainer name>",
-       "image": "ghcr.io/numberoverzero/n0-devcontainer:latest",
+       "image": "ghcr.io/numberoverzero/devcontainer:latest",
        "runArgs": [
             // if you have any, like:
             // "--network=host"

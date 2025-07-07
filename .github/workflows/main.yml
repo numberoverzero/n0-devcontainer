@@ -1,0 +1,42 @@
+name: build and publish devcontainer
+on:
+  push:
+    branches:
+      - trunk
+
+
+env:
+  # https://docs.docker.com/build/ci/github-actions/attestations/#default-provenance
+  # uh.. let's not accidentally leak secret tokens.
+  BUILDX_NO_DEFAULT_ATTESTATIONS: 1
+
+
+permissions:
+  contents: read
+  packages: write
+
+
+jobs:
+  publish-devcontainer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      -
+        name: login
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: set env
+        run: echo "NOW=$(date +'%Y.%m.%d')" >> $GITHUB_ENV
+      -
+        name: build devcontainer
+        uses: devcontainers/ci@v0.3
+        with:
+          subFolder: devcontainer-image
+          configFile: devcontainer-image/devcontainer.json
+          imageName: ghcr.io/${{ github.actor }}/devcontainer
+          imageTag: latest,v${{ env.NOW }}
+          push: always
