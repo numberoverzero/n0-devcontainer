@@ -1,0 +1,26 @@
+{
+    "name": "n0-devcontainer-example",
+    "image": "n0-devcontainer:latest",
+    "runArgs": [
+        "--network=host"
+    ],
+    "mounts": [
+        "source=${env:HOME}/.aws,target=/home/vscode/.aws,type=bind,consistency=consistent",
+        "source=${env:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=consistent"
+    ],
+    "forwardPorts": [
+        8080,
+        8443
+    ],
+    "portsAttributes": {
+        "8080": {
+            "label": "dev port 80",
+            "onAutoForward": "notify"
+        },
+        "8443": {
+            "label": "dev port 443",
+            "onAutoForward": "notify"
+        }
+    },
+    "postCreateCommand": "example/.devcontainer/postCreateCommand.sh"
+}
