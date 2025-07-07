@@ -5,33 +5,54 @@
         "context": "../base-image"
     },
     "remoteUser": "vscode",
+    "forwardPorts": [
+        4004
+    ],
+    "portsAttributes": {
+        "4004": {
+            "label": "default vite port (ghcr.io/numberoverzero/devcontainer)",
+            "onAutoForward": "notify"
+        }
+    },
     "customizations": {
         "vscode": {
             "settings": {
-                "dev.containers.experimentalLockfile": true
+                "dev.containers.experimentalLockfile": true,
+                "vite.port": 4004,
+                "vite.devCommand": "npm run dev -- --host --port 4004 --strictPort",
+                "vite.autoStart": false,
+                "vite.showTerminal": false,
+                "vite.browserType": "embedded",
+                "debug.javascript.terminalOptions": {
+                    "resolveSourceMapLocations": [
+                    "${workspaceFolder}/**",
+                    "!**/node_modules/**",
+                    "**/node_modules/.vite-temp/**"
+                    ]
+                }
             },
             "extensions": [
                 // remote, devcontainers
+                "ms-azuretools.vscode-containers",
                 "ms-vscode-remote.remote-containers",
                 "ms-vscode-remote.remote-ssh",
                 "ms-vscode-remote.remote-ssh-edit",
-                "ms-vscode.remote-server",
                 "ms-vscode.remote-explorer",
-                "ms-azuretools.vscode-containers",
+                "ms-vscode.remote-server",
 
                 // aws
-                "mark-tucker.aws-cli-configure",
                 "amazonwebservices.aws-toolkit-vscode",
+                "mark-tucker.aws-cli-configure",
 
                 // python
-                "ms-python.vscode-pylance",
-                "ms-python.python",
-                "ms-python.debugpy",
                 "charliermarsh.ruff",
+                "ms-python.debugpy",
+                "ms-python.python",
+                "ms-python.vscode-pylance",
 
                 // rust
-                "tamasfe.even-better-toml",
                 "rust-lang.rust-analyzer",
+                "tamasfe.even-better-toml",
 
                 // sql
                 "mtxr.sqltools",
@@ -39,12 +60,13 @@
                 "mtxr.sqltools-driver-sqlite",
 
                 // ts
+                "antfu.vite",
                 "biomejs.biome",
 
                 // <uninstall>
-                "-ms-vscode-remote.remote-wsl",
                 "-dbaeumer.vscode-eslint",
-                "-ms-python.autopep8"
+                "-ms-python.autopep8",
+                "-ms-vscode-remote.remote-wsl"
             ]
         }
     },
