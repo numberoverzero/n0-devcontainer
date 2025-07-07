@@ -17,19 +17,21 @@
     "customizations": {
         "vscode": {
             "settings": {
-                "dev.containers.experimentalLockfile": true,
-                "vite.port": 4004,
-                "vite.devCommand": "npm run dev -- --host --port 4004 --strictPort",
-                "vite.autoStart": false,
-                "vite.showTerminal": false,
-                "vite.browserType": "embedded",
                 "debug.javascript.terminalOptions": {
                     "resolveSourceMapLocations": [
                     "${workspaceFolder}/**",
                     "!**/node_modules/**",
                     "**/node_modules/.vite-temp/**"
                     ]
-                }
+                },
+                "dev.containers.experimentalLockfile": true,
+                "files.insertFinalNewline": true,
+                "sqltools.useNodeRuntime": true,
+                "vite.port": 4004,
+                "vite.devCommand": "npm run dev -- --host --port 4004 --strictPort",
+                "vite.autoStart": false,
+                "vite.showTerminal": false,
+                "vite.browserType": "embedded"
             },
             "extensions": [
                 // remote, devcontainers

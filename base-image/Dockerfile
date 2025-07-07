@@ -32,6 +32,7 @@ RUN apt update -y && \
         nano \
         net-tools \
         openssh-client \
+        sqlite3 \
         sudo \
         tree \
         rsync \
@@ -109,7 +110,7 @@ RUN ${BUILD_ROOT}/installers/install-nvm.sh && \
     nvm install ${NODE_VERSION} && \
     nvm use ${NODE_VERSION} && \
     nvm alias default ${NODE_VERSION} && \
-    npm install --global --save-dev --save-exact @biomejs/biome typescript esbuild wrangler
+    npm install --global @biomejs/biome esbuild sqlite3 typescript wrangler
 # rust (note: apt version does not allow self update)
 RUN ${BUILD_ROOT}/installers/install-rustup.sh -y && \
     source ${USER_HOME}/.zshrc && \
