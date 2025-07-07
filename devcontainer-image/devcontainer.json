@@ -1,8 +1,8 @@
 {
-    "name": "n0-devcontainer-base",
+    "name": "n0-devcontainer",
     "build": {
-        "dockerfile": "base-image/Dockerfile",
-        "context": "base-image"
+        "dockerfile": "../base-image/Dockerfile",
+        "context": "../base-image"
     },
     "remoteUser": "vscode",
     "customizations": {

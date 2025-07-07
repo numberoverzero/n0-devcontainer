@@ -48,6 +48,7 @@ RUN yes | unminimize
 # =============================================================================
 # PART 1: create user, grab build context
 # =============================================================================
+RUN locale-gen "en_US.UTF-8"
 RUN userdel -f -r ubuntu && \
     echo ${USER_GID} && \
     groupadd -g ${USER_GID} ${USERNAME} && \
