@@ -7,14 +7,16 @@ INSTALLER_ROOT := base-image/build-root/installers
 
 
 build-devcontainer:
-	npx @devcontainers/cli build \
+	BUILDX_METADATA_PROVENANCE=false BUILDX_NO_DEFAULT_ATTESTATIONS=1 npx @devcontainers/cli build \
 		--workspace-folder devcontainer-image \
 		--config devcontainer-image/devcontainer.json \
 		--image-name $(DEVCONTAINER_IMAGE_NAME) \
 		--push false --log-level debug
 
 build-base:
-	docker build -t $(BASE_IMAGE_NAME) -f base-image/Dockerfile base-image/
+	BUILDX_METADATA_PROVENANCE=false BUILDX_NO_DEFAULT_ATTESTATIONS=1 docker build \
+		-t $(BASE_IMAGE_NAME) \
+		-f base-image/Dockerfile base-image/
 
 installers:
 	curl --proto '=https' --tlsv1.2 -LsSf https://astral.sh/uv/install.sh -o "$(INSTALLER_ROOT)/install-uv.sh"

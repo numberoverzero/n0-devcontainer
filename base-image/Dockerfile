@@ -48,7 +48,12 @@ RUN yes | unminimize
 # =============================================================================
 # PART 1: create user, grab build context
 # =============================================================================
-RUN locale-gen "en_US.UTF-8"
+RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && \
+    echo "en_DK.UTF-8 UTF-8" >> /etc/locale.gen && \
+    locale-gen
+ENV LANG=en_US.UTF-8
+ENV LC_TIME=en_DK.UTF-8
+
 RUN userdel -f -r ubuntu && \
     echo ${USER_GID} && \
     groupadd -g ${USER_GID} ${USERNAME} && \
