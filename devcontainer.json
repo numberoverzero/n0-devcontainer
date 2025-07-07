@@ -1,0 +1,59 @@
+{
+    "name": "n0-devcontainer-base",
+    "build": {
+        "dockerfile": "base-image/Dockerfile",
+        "context": "base-image"
+    },
+    "remoteUser": "vscode",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "dev.containers.experimentalLockfile": true
+            },
+            "extensions": [
+                // remote, devcontainers
+                "ms-vscode-remote.remote-containers",
+                "ms-vscode-remote.remote-ssh",
+                "ms-vscode-remote.remote-ssh-edit",
+                "ms-vscode.remote-server",
+                "ms-vscode.remote-explorer",
+                "ms-azuretools.vscode-containers",
+
+                // aws
+                "mark-tucker.aws-cli-configure",
+                "amazonwebservices.aws-toolkit-vscode",
+
+                // python
+                "ms-python.vscode-pylance",
+                "ms-python.python",
+                "ms-python.debugpy",
+                "charliermarsh.ruff",
+
+                // rust
+                "tamasfe.even-better-toml",
+                "rust-lang.rust-analyzer",
+
+                // sql
+                "mtxr.sqltools",
+                "mtxr.sqltools-driver-pg",
+                "mtxr.sqltools-driver-sqlite",
+
+                // ts
+                "biomejs.biome",
+
+                // <uninstall>
+                "-ms-vscode-remote.remote-wsl",
+                "-dbaeumer.vscode-eslint",
+                "-ms-python.autopep8"
+            ]
+        }
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {
+            "moby": true,
+            "dockerDashComposeVersion": "none",
+            "azureDnsAutoDetection": false,
+            "installDockerComposeSwitch": false
+        }
+    }
+}
