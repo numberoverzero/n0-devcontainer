@@ -26,6 +26,7 @@ RUN apt update -y && \
         locales \
         lsb-release \
         lsof \
+        make \
         man-db \
         manpages \
         manpages-dev \
