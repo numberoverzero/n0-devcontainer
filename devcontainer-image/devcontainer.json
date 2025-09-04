@@ -6,13 +6,8 @@
     },
     "remoteUser": "vscode",
     "forwardPorts": [
-        4004
     ],
     "portsAttributes": {
-        "4004": {
-            "label": "default vite port (ghcr.io/numberoverzero/devcontainer)",
-            "onAutoForward": "notify"
-        }
     },
     "customizations": {
         "vscode": {
@@ -45,8 +40,7 @@
                 "debug.javascript.terminalOptions": {
                     "resolveSourceMapLocations": [
                     "${workspaceFolder}/**",
-                    "!**/node_modules/**",
-                    "**/node_modules/.vite-temp/**"
+                    "!**/node_modules/**"
                     ]
                 },
                 "dev.containers.experimentalLockfile": true,
@@ -71,12 +65,7 @@
                 "ruff.enable": true,
                 "ruff.lint.enable": true,
                 "sqltools.useNodeRuntime": true,
-                "telemetry.telemetryLevel": "off",
-                "vite.port": 4004,
-                "vite.devCommand": "npm run dev -- --host --port 4004 --strictPort",
-                "vite.autoStart": false,
-                "vite.showTerminal": false,
-                "vite.browserType": "embedded"
+                "telemetry.telemetryLevel": "off"
             },
             "extensions": [
                 // remote, devcontainers
@@ -107,7 +96,6 @@
                 "mtxr.sqltools-driver-sqlite",
 
                 // ts
-                "antfu.vite",
                 "biomejs.biome",
 
                 // <uninstall>
