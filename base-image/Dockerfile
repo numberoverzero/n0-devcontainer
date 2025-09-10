@@ -16,6 +16,7 @@ ARG NODE_VERSION="24"
 # =============================================================================
 RUN apt update -y && \
     apt install -y --no-install-recommends \
+        build-essential \
         ca-certificates \
         curl \
         # (note: fossil apt version lags by a few minor versions but seems fine)
@@ -33,6 +34,8 @@ RUN apt update -y && \
         nano \
         net-tools \
         openssh-client \
+        pkg-config \
+        rust-c \
         sqlite3 \
         sudo \
         tree \
