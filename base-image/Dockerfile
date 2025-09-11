@@ -35,7 +35,6 @@ RUN apt update -y && \
         net-tools \
         openssh-client \
         pkg-config \
-        rust-c \
         sqlite3 \
         sudo \
         tree \
