@@ -10,6 +10,8 @@ ARG BUILD_ROOT="/tmp/build-root"
 ARG PYTHON_VERSION="3.13"
 ARG PANTS_VERSION="2.27.0"
 ARG NODE_VERSION="24"
+ARG GO_VERSION="1.25.5"
+ARG GO_SHA256="9e9b755d63b36acf30c12a9a3fc379243714c1c6d3dd72861da637f336ebb35b"
 
 # =============================================================================
 # PART 0: base dependencies
@@ -121,6 +123,9 @@ RUN ${BUILD_ROOT}/installers/install-rustup.sh -y && \
     rustup toolchain install nightly && rustup update
     # TODO: add cross-compilation targets here with:
     #   rustup target add <triple>
+# go
+RUN ${BUILD_ROOT}/installers/install-go.sh && \
+    source ${USER_HOME}/.zshrc
 
 # drop build artifacts
 RUN rm -rf ${BUILD_ROOT}

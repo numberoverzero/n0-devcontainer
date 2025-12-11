@@ -6,6 +6,7 @@ on:
 
 
 env:
+  BUILDX_METADATA_PROVENANCE: false
   # https://docs.docker.com/build/ci/github-actions/attestations/#default-provenance
   # uh.. let's not accidentally leak secret tokens.
   BUILDX_NO_DEFAULT_ATTESTATIONS: 1
