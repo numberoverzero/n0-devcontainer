@@ -8,7 +8,6 @@ ARG USER_HOME="/home/$USERNAME"
 ARG BUILD_ROOT="/tmp/build-root"
 
 ARG PYTHON_VERSION="3.13"
-ARG PANTS_VERSION="2.30.0"
 ARG NODE_VERSION="24"
 ARG GO_VERSION="1.25.5"
 ARG GO_SHA256="9e9b755d63b36acf30c12a9a3fc379243714c1c6d3dd72861da637f336ebb35b"
@@ -104,11 +103,6 @@ RUN umask g-w,o-w && \
 RUN ${BUILD_ROOT}/installers/install-uv.sh && \
     source ${USER_HOME}/.zshrc && \
     uv python install ${PYTHON_VERSION} --preview
-# pants
-RUN source ${USER_HOME}/.zshrc && \
-    ${BUILD_ROOT}/installers/install-pants.sh && \
-    source ${USER_HOME}/.zshrc && \
-    PYTHON_VERSION=${PYTHON_VERSION} PANTS_VERSION=${PANTS_VERSION} HOME=${USER_HOME} ${BUILD_ROOT}/installers/configure-pants.sh
 # nvm, global dev packages
 RUN ${BUILD_ROOT}/installers/install-nvm.sh && \
     source ${USER_HOME}/.zshrc && \
