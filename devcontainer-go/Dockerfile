@@ -90,13 +90,12 @@ RUN umask g-w,o-w && \
     git repack -a -d -f --depth=1 --window=1 && \
     cp -a ${BUILD_ROOT}/home/. ${USER_HOME}/. && \
     # aws, ssh are usually bind mounted from host
-    mkdir -p ${USER_HOME}/.config ${USER_HOME}/.aws ${USER_HOME}/.ssh && \
+    mkdir -p ${USER_HOME}/{.config,.aws,.ssh,.local/bin} && \
     # fixup user home permissions
     chown -R ${USERNAME}:${USERNAME} ${USER_HOME}
 
 # go only
-RUN ${BUILD_ROOT}/installers/install-go.sh && \
-    source ${USER_HOME}/.zshrc
+RUN zsh -l -c '${BUILD_ROOT}/installers/install-go.sh'
 
 # drop build artifacts
 RUN rm -rf ${BUILD_ROOT}

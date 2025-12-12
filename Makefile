@@ -1,18 +1,18 @@
-.PHONY: build-devcontainer build-devcontainer-all build-devcontainer-go installers
+.PHONY: devcontainer devcontainer-all devcontainer-go installers
 
 
 INSTALLER_ROOT := shared/build-root/installers
 
 
-build-devcontainer: build-devcontainer-all build-devcontainer-go
+devcontainer: devcontainer-all devcontainer-go
 
-build-devcontainer-all:
+devcontainer-all:
 	BUILDX_METADATA_PROVENANCE=false BUILDX_NO_DEFAULT_ATTESTATIONS=1 npx @devcontainers/cli build \
 		--workspace-folder devcontainer-all \
 		--config devcontainer-all/devcontainer.json \
 		--push false --log-level debug
 
-build-devcontainer-go:
+devcontainer-go:
 	BUILDX_METADATA_PROVENANCE=false BUILDX_NO_DEFAULT_ATTESTATIONS=1 npx @devcontainers/cli build \
 		--workspace-folder devcontainer-go \
 		--config devcontainer-go/devcontainer.json \

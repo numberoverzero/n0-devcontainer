@@ -94,32 +94,31 @@ RUN umask g-w,o-w && \
     git repack -a -d -f --depth=1 --window=1 && \
     cp -a ${BUILD_ROOT}/home/. ${USER_HOME}/. && \
     # aws, ssh are usually bind mounted from host
-    mkdir -p ${USER_HOME}/.config ${USER_HOME}/.aws ${USER_HOME}/.ssh && \
+    mkdir -p ${USER_HOME}/{.config,.aws,.ssh,.local/bin} && \
     # fixup user home permissions
     chown -R ${USERNAME}:${USERNAME} ${USER_HOME}
 
 
 # uv
-RUN ${BUILD_ROOT}/installers/install-uv.sh && \
+RUN zsh -l -c '${BUILD_ROOT}/installers/install-uv.sh' && \
     source ${USER_HOME}/.zshrc && \
     uv python install ${PYTHON_VERSION} --preview
 # nvm, global dev packages
-RUN ${BUILD_ROOT}/installers/install-nvm.sh && \
+RUN zsh -l -c '${BUILD_ROOT}/installers/install-nvm.sh' && \
     source ${USER_HOME}/.zshrc && \
     nvm install ${NODE_VERSION} && \
     nvm use ${NODE_VERSION} && \
     nvm alias default ${NODE_VERSION} && \
     npm install --global @biomejs/biome esbuild sqlite3 typescript wrangler
 # rust (note: apt version does not allow self update)
-RUN ${BUILD_ROOT}/installers/install-rustup.sh -y && \
+RUN zsh -l -c '${BUILD_ROOT}/installers/install-rustup.sh -y' && \
     source ${USER_HOME}/.zshrc && \
     rustup self update && \
     rustup toolchain install nightly && rustup update
     # TODO: add cross-compilation targets here with:
     #   rustup target add <triple>
 # go
-RUN ${BUILD_ROOT}/installers/install-go.sh && \
-    source ${USER_HOME}/.zshrc
+RUN zsh -l -c '${BUILD_ROOT}/installers/install-go.sh'
 
 # drop build artifacts
 RUN rm -rf ${BUILD_ROOT}
