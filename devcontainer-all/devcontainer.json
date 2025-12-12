@@ -1,8 +1,8 @@
 {
-    "name": "n0-devcontainer",
+    "name": "n0-devcontainer-all",
     "build": {
         "dockerfile": "./Dockerfile",
-        "context": "../."
+        "context": ".."
     },
     "remoteUser": "vscode",
     "forwardPorts": [
