@@ -24,7 +24,7 @@
                 "dev.containers.experimentalLockfile": true,
                 "editor.inlayHints.enabled": "offUnlessPressed",
                 "files.insertFinalNewline": true,
-                "sqltools.useNodeRuntime": true,
+                "sqltools.useNodeRuntime": false,
                 "telemetry.telemetryLevel": "off"
             },
             "extensions": [
