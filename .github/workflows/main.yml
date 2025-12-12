@@ -36,8 +36,8 @@ jobs:
         name: build devcontainer-all
         uses: devcontainers/ci@v0.3
         with:
-          subFolder: devcontainer-all/devcontainer-image
-          configFile: devcontainer-all/devcontainer-image/devcontainer.json
+          subFolder: devcontainer-all
+          configFile: devcontainer-all/devcontainer.json
           imageName: ghcr.io/${{ github.actor }}/devcontainer-all
           imageTag: latest,v${{ env.NOW }}
           push: always
@@ -60,8 +60,8 @@ jobs:
         name: build devcontainer-go
         uses: devcontainers/ci@v0.3
         with:
-          subFolder: devcontainer-go/devcontainer-image
-          configFile: devcontainer-go/devcontainer-image/devcontainer.json
+          subFolder: devcontainer-go
+          configFile: devcontainer-go/devcontainer.json
           imageName: ghcr.io/${{ github.actor }}/devcontainer-go
           imageTag: latest,v${{ env.NOW }}
           push: always

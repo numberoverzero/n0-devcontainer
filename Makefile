@@ -8,14 +8,14 @@ build-devcontainer: build-devcontainer-all build-devcontainer-go
 
 build-devcontainer-all:
 	BUILDX_METADATA_PROVENANCE=false BUILDX_NO_DEFAULT_ATTESTATIONS=1 npx @devcontainers/cli build \
-		--workspace-folder devcontainer-all/devcontainer-image \
-		--config devcontainer-all/devcontainer-image/devcontainer.json \
+		--workspace-folder devcontainer-all \
+		--config devcontainer-all/devcontainer.json \
 		--push false --log-level debug
 
 build-devcontainer-go:
 	BUILDX_METADATA_PROVENANCE=false BUILDX_NO_DEFAULT_ATTESTATIONS=1 npx @devcontainers/cli build \
-		--workspace-folder devcontainer-go/devcontainer-image \
-		--config devcontainer-go/devcontainer-image/devcontainer.json \
+		--workspace-folder devcontainer-go \
+		--config devcontainer-go/devcontainer.json \
 		--push false --log-level debug
 
 installers:

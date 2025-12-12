@@ -1,6 +1,6 @@
 {
     "name": "n0-devcontainer-example",
-    "image": "n0-devcontainer:latest",
+    "image": "n0-devcontainer-all:latest",
     "runArgs": [
         "--network=host"
     ],
