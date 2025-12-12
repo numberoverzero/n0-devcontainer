@@ -18,7 +18,7 @@ permissions:
 
 
 jobs:
-  publish-devcontainer:
+  publish-devcontainer-all:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -33,11 +33,35 @@ jobs:
       - name: set env
         run: echo "NOW=$(date +'%Y.%m.%d')" >> $GITHUB_ENV
       -
-        name: build devcontainer
+        name: build devcontainer-all
         uses: devcontainers/ci@v0.3
         with:
-          subFolder: devcontainer-image
-          configFile: devcontainer-image/devcontainer.json
-          imageName: ghcr.io/${{ github.actor }}/devcontainer
+          subFolder: devcontainer-all/devcontainer-image
+          configFile: devcontainer-all/devcontainer-image/devcontainer.json
+          imageName: ghcr.io/${{ github.actor }}/devcontainer-all
+          imageTag: latest,v${{ env.NOW }}
+          push: always
+
+  publish-devcontainer-go:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      -
+        name: login
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: set env
+        run: echo "NOW=$(date +'%Y.%m.%d')" >> $GITHUB_ENV
+      -
+        name: build devcontainer-go
+        uses: devcontainers/ci@v0.3
+        with:
+          subFolder: devcontainer-go/devcontainer-image
+          configFile: devcontainer-go/devcontainer-image/devcontainer.json
+          imageName: ghcr.io/${{ github.actor }}/devcontainer-go
           imageTag: latest,v${{ env.NOW }}
           push: always

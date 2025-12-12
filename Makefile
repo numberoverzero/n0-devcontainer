@@ -1,22 +1,22 @@
-.PHONY: build-devcontainer build-base installers
+.PHONY: build-devcontainer build-devcontainer-all build-devcontainer-go installers
 
 
-DEVCONTAINER_IMAGE_NAME := n0-devcontainer:latest
-BASE_IMAGE_NAME := n0-devcontainer-base:latest
-INSTALLER_ROOT := base-image/build-root/installers
+INSTALLER_ROOT := shared/build-root/installers
 
 
-build-devcontainer:
+build-devcontainer: build-devcontainer-all build-devcontainer-go
+
+build-devcontainer-all:
 	BUILDX_METADATA_PROVENANCE=false BUILDX_NO_DEFAULT_ATTESTATIONS=1 npx @devcontainers/cli build \
-		--workspace-folder devcontainer-image \
-		--config devcontainer-image/devcontainer.json \
-		--image-name $(DEVCONTAINER_IMAGE_NAME) \
+		--workspace-folder devcontainer-all/devcontainer-image \
+		--config devcontainer-all/devcontainer-image/devcontainer.json \
 		--push false --log-level debug
 
-build-base:
-	BUILDX_METADATA_PROVENANCE=false BUILDX_NO_DEFAULT_ATTESTATIONS=1 docker build \
-		-t $(BASE_IMAGE_NAME) \
-		-f base-image/Dockerfile base-image/
+build-devcontainer-go:
+	BUILDX_METADATA_PROVENANCE=false BUILDX_NO_DEFAULT_ATTESTATIONS=1 npx @devcontainers/cli build \
+		--workspace-folder devcontainer-go/devcontainer-image \
+		--config devcontainer-go/devcontainer-image/devcontainer.json \
+		--push false --log-level debug
 
 installers:
 	curl --proto '=https' --tlsv1.2 -LsSf https://astral.sh/uv/install.sh -o "$(INSTALLER_ROOT)/install-uv.sh"

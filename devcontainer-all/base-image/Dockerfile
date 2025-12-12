@@ -67,7 +67,7 @@ RUN userdel -f -r ubuntu && \
     chmod 0440 /etc/sudoers.d/${USERNAME}
 
 # copy all of our build context into the container so we can run installer scripts
-COPY --chown=${USER_UID}:${USER_GID} build-root ${BUILD_ROOT}
+COPY --chown=${USER_UID}:${USER_GID} shared/build-root ${BUILD_ROOT}
 
 # =============================================================================
 # PART 2: install all of our development tools as user, not root
