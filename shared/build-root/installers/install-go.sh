@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 set -euo pipefail
 
 GO_VERSION="${GO_VERSION:?GO_VERSION must be set}"
@@ -32,3 +32,9 @@ ln -sf "$INSTALL_PATH/bin/go" "$HOME/.local/bin/go"
 ln -sf "$INSTALL_PATH/bin/gofmt" "$HOME/.local/bin/gofmt"
 
 echo "Installed: $(go version)"
+
+# Install go tools
+echo "install-go.sh: Installing golangci-lint..."
+go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+echo "install-go.sh: Installing gosec..."
+go install github.com/securego/gosec/v2/cmd/gosec@latest
