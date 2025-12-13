@@ -73,7 +73,7 @@ COPY --chown=${USER_UID}:${USER_GID} shared/build-root ${BUILD_ROOT}
 # PART 2: install all of our development tools as user, not root
 # =============================================================================
 USER ${USERNAME}
-SHELL [ "/bin/zsh", "-c" ]
+SHELL [ "/bin/zsh", "-i", "-c" ]
 ENV SHELL=/bin/zsh
 
 # configure ~, zsh, oh-my-zsh
@@ -100,25 +100,23 @@ RUN umask g-w,o-w && \
 
 
 # uv
-RUN zsh -l -c '${BUILD_ROOT}/installers/install-uv.sh' && \
-    source ${USER_HOME}/.zshrc && \
+RUN ${BUILD_ROOT}/installers/install-uv.sh && \
     uv python install ${PYTHON_VERSION} --preview
 # nvm, global dev packages
-RUN zsh -l -c '${BUILD_ROOT}/installers/install-nvm.sh' && \
-    source ${USER_HOME}/.zshrc && \
+RUN ${BUILD_ROOT}/installers/install-nvm.sh && \
     nvm install ${NODE_VERSION} && \
     nvm use ${NODE_VERSION} && \
     nvm alias default ${NODE_VERSION} && \
     npm install --global @biomejs/biome esbuild sqlite3 typescript wrangler
 # rust (note: apt version does not allow self update)
-RUN zsh -l -c '${BUILD_ROOT}/installers/install-rustup.sh -y' && \
+RUN ${BUILD_ROOT}/installers/install-rustup.sh -y && \
     source ${USER_HOME}/.zshrc && \
     rustup self update && \
     rustup toolchain install nightly && rustup update
     # TODO: add cross-compilation targets here with:
     #   rustup target add <triple>
 # go
-RUN zsh -l -c '${BUILD_ROOT}/installers/install-go.sh'
+RUN ${BUILD_ROOT}/installers/install-go.sh
 
 # drop build artifacts
 RUN rm -rf ${BUILD_ROOT}

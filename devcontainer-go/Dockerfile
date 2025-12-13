@@ -69,7 +69,7 @@ COPY --chown=${USER_UID}:${USER_GID} shared/build-root ${BUILD_ROOT}
 # PART 2: install development tools as user, not root
 # =============================================================================
 USER ${USERNAME}
-SHELL [ "/bin/zsh", "-c" ]
+SHELL [ "/bin/zsh", "-i", "-c" ]
 ENV SHELL=/bin/zsh
 
 # configure ~, zsh, oh-my-zsh
@@ -95,7 +95,7 @@ RUN umask g-w,o-w && \
     chown -R ${USERNAME}:${USERNAME} ${USER_HOME}
 
 # go only
-RUN zsh -l -c '${BUILD_ROOT}/installers/install-go.sh'
+RUN ${BUILD_ROOT}/installers/install-go.sh
 
 # drop build artifacts
 RUN rm -rf ${BUILD_ROOT}
