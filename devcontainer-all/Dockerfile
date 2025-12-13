@@ -103,15 +103,14 @@ RUN umask g-w,o-w && \
 RUN ${BUILD_ROOT}/installers/install-uv.sh && \
     uv python install ${PYTHON_VERSION} --preview
 # nvm, global dev packages
-RUN ${BUILD_ROOT}/installers/install-nvm.sh && \
-    nvm install ${NODE_VERSION} && \
+RUN ${BUILD_ROOT}/installers/install-nvm.sh
+RUN nvm install ${NODE_VERSION} && \
     nvm use ${NODE_VERSION} && \
     nvm alias default ${NODE_VERSION} && \
     npm install --global @biomejs/biome esbuild sqlite3 typescript wrangler
 # rust (note: apt version does not allow self update)
-RUN ${BUILD_ROOT}/installers/install-rustup.sh -y && \
-    source ${USER_HOME}/.zshrc && \
-    rustup self update && \
+RUN ${BUILD_ROOT}/installers/install-rustup.sh -y
+RUN rustup self update && \
     rustup toolchain install nightly && rustup update
     # TODO: add cross-compilation targets here with:
     #   rustup target add <triple>
