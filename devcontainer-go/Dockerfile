@@ -9,6 +9,7 @@ ARG BUILD_ROOT="/tmp/build-root"
 
 ARG GO_VERSION="1.25.5"
 ARG GO_SHA256="9e9b755d63b36acf30c12a9a3fc379243714c1c6d3dd72861da637f336ebb35b"
+ARG CAGENT_VERSION="v1.15.1"
 
 # =============================================================================
 # PART 0: base dependencies
@@ -94,8 +95,10 @@ RUN umask g-w,o-w && \
     # fixup user home permissions
     chown -R ${USERNAME}:${USERNAME} ${USER_HOME}
 
-# go only
+# go
 RUN ${BUILD_ROOT}/installers/install-go.sh
+# cagent
+RUN ${BUILD_ROOT}/installers/install-cagent.sh
 
 # drop build artifacts
 RUN rm -rf ${BUILD_ROOT}
