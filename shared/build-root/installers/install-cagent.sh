@@ -15,4 +15,4 @@ mkdir -p "$INSTALL_DIR"
 curl -fsSL "$URL" -o "$INSTALL_DIR/cagent"
 chmod +x "$INSTALL_DIR/cagent"
 
-echo "Installed: $(cagent --version)"
+echo "Installed: $(cagent version)"

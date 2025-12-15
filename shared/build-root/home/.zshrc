@@ -1,6 +1,9 @@
 export PYTHONDONTWRITEBYTECODE=1
 export PATH="$HOME/bin:$HOME/go/bin:$HOME/.local/bin:/usr/local/bin:$PATH"
 
+# disable cagent telemetry
+export TELEMETRY_ENABLED=false
+
 export ZSH="$HOME/.zsh"
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 ZSH_THEME="n0"
