@@ -1,5 +1,5 @@
 export PYTHONDONTWRITEBYTECODE=1
-export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH"
+export PATH="$HOME/bin:$HOME/go/bin:$HOME/.local/bin:/usr/local/bin:$PATH"
 
 export ZSH="$HOME/.zsh"
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
