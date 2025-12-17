@@ -34,6 +34,8 @@ ln -sf "$INSTALL_PATH/bin/gofmt" "$HOME/.local/bin/gofmt"
 echo "Installed: $(go version)"
 
 # Install go tools
+echo "Installing gopls..."
+go install golang.org/x/tools/gopls@latest
 echo "Installing gofumpt..."
 go install mvdan.cc/gofumpt@latest
 echo "Installing golangci-lint..."
