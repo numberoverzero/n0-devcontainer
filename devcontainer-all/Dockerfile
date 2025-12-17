@@ -119,6 +119,8 @@ RUN rustup self update && \
 RUN ${BUILD_ROOT}/installers/install-go.sh
 # cagent
 RUN ${BUILD_ROOT}/installers/install-cagent.sh
+# claude
+RUN ${BUILD_ROOT}/installers/install-claude.sh
 
 # drop build artifacts
 RUN rm -rf ${BUILD_ROOT}

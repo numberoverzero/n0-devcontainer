@@ -99,6 +99,8 @@ RUN umask g-w,o-w && \
 RUN ${BUILD_ROOT}/installers/install-go.sh
 # cagent
 RUN ${BUILD_ROOT}/installers/install-cagent.sh
+# claude
+RUN ${BUILD_ROOT}/installers/install-claude.sh
 
 # drop build artifacts
 RUN rm -rf ${BUILD_ROOT}

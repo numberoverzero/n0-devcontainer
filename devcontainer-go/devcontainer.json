@@ -48,6 +48,9 @@
                 "mtxr.sqltools-driver-pg",
                 "mtxr.sqltools-driver-sqlite",
 
+                // claude
+                "anthropic.claude-code",
+
                 // <uninstall>
                 "-dbaeumer.vscode-eslint",
                 "-ms-python.autopep8",

@@ -108,6 +108,9 @@
                 // ts
                 "biomejs.biome",
 
+                // claude
+                "anthropic.claude-code",
+
                 // <uninstall>
                 "-dbaeumer.vscode-eslint",
                 "-ms-python.autopep8",
