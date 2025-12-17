@@ -108,8 +108,10 @@
                 // ts
                 "biomejs.biome",
 
-                // claude
+                // LLMs
                 "anthropic.claude-code",
+                "github.copilot",
+                "github.copilot-chat",
 
                 // <uninstall>
                 "-dbaeumer.vscode-eslint",

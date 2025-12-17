@@ -48,8 +48,10 @@
                 "mtxr.sqltools-driver-pg",
                 "mtxr.sqltools-driver-sqlite",
 
-                // claude
+                // LLMs
                 "anthropic.claude-code",
+                "github.copilot",
+                "github.copilot-chat",
 
                 // <uninstall>
                 "-dbaeumer.vscode-eslint",
