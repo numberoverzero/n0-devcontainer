@@ -5,6 +5,9 @@
         "context": ".."
     },
     "remoteUser": "vscode",
+    "runArgs": [
+        "--cap-add=NET_ADMIN"
+    ],
     "forwardPorts": [
     ],
     "portsAttributes": {

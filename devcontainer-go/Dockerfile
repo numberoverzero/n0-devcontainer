@@ -43,7 +43,8 @@ RUN apt update -y && \
         yq \
         zip \
         zsh \
-        unminimize
+        unminimize\
+        wireguard
 RUN apt update && apt upgrade -y --no-install-recommends && apt autoremove -y
 RUN yes | unminimize
 
