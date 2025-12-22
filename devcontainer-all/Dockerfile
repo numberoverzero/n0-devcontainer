@@ -12,6 +12,7 @@ ARG NODE_VERSION="24"
 ARG GO_VERSION="1.25.5"
 ARG GO_SHA256="9e9b755d63b36acf30c12a9a3fc379243714c1c6d3dd72861da637f336ebb35b"
 ARG CAGENT_VERSION="v1.15.1"
+ARG AWSCLI_SHA256="08b43b630e5ac1c77ef6aca3d3a47e95e46ec5f1f06e94d2c130fd47fdb2d41a"
 
 # =============================================================================
 # PART 0: base dependencies
@@ -122,6 +123,8 @@ RUN ${BUILD_ROOT}/installers/install-go.sh
 RUN ${BUILD_ROOT}/installers/install-cagent.sh
 # claude
 RUN ${BUILD_ROOT}/installers/install-claude.sh
+# aws cli
+RUN ${BUILD_ROOT}/installers/install-awscli.sh
 
 # drop build artifacts
 RUN rm -rf ${BUILD_ROOT}
