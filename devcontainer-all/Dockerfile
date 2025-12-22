@@ -25,6 +25,7 @@ RUN apt update -y && \
         # (note: fossil apt version lags by a few minor versions but seems fine)
         fossil \
         git \
+        iproute2 \
         jq \
         less \
         locales \

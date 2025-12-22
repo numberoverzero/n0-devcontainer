@@ -21,6 +21,7 @@ RUN apt update -y && \
         ca-certificates \
         curl \
         git \
+        iproute2 \
         jq \
         less \
         locales \
